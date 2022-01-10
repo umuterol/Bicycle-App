@@ -1,21 +1,21 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import Colors from '../constants/color'
 import Button from './Button'
-import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const WalletCard = (props) => {
     return (
-        <View style={styles.card}>
-            <View style={styles.priceContainer}>
-                <Text style={styles.text}>{props.balance}₺</Text>
+        <TouchableOpacity activeOpacity={0.7} onPress={props.onSelect}>
+            <View style={styles.card}>
+                <View style={styles.priceContainer}>
+                    <Text style={styles.text}>{props.balance.toFixed(2)}₺</Text>
+                </View>
+                <View style={styles.iconContainer}>
+                    <FontAwesome5 name="google-wallet" size={50} color={Colors.accentColor} />
+                </View>
             </View>
-            <View style={styles.buttonContainer}>
-                <Button onSelect={props.onSelect}>
-                    <AntDesign name="arrowright" size={24} color="black" />
-                </Button>
-            </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    buttonContainer: {
+    iconContainer: {
         position: 'absolute',
-        bottom: 10,
-        right: 10,
+        top: 10,
+        left: 10,
     }
 })

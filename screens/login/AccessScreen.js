@@ -21,7 +21,7 @@ const AccessScreen = props => {
             })
             return false;
         }
-        const verifyCode = '222'//await login(value);
+        const verifyCode =await login(value) //222
         if (verifyCode) {
             return props.navigation.navigate('VerifyScreen', { verifyCode, phoneNumber: value })
         }

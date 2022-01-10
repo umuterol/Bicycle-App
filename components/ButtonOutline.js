@@ -6,6 +6,7 @@ const ButtonOutline = props => {
     const color = props.color || Color.accentColor;
     const defaultButtonStyle = {
         ...styles.button,
+        backgroundColor: props.bgColor || '#fff',
     };
     const defaultTextStyle = { ...styles.text, color: color, };
     const [buttonStyle, setButtonStyle] = useState(defaultButtonStyle)
@@ -44,7 +45,6 @@ const styles = StyleSheet.create({
     button: {
         borderRadius: 7,
         padding: 10,
-        backgroundColor: '#fff',
     },
     text: {
         textAlign: 'center',

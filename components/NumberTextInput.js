@@ -4,6 +4,7 @@ import { TextField, FilledTextField, OutlinedTextField } from 'rn-material-ui-te
 
 
 
+
 const NumberTextInput = props => {
     const formatText = (text) => {
         return text.replace(/[^+\d]/g, '');
@@ -17,6 +18,7 @@ const NumberTextInput = props => {
         onChangeText={props.onChangeText}
         fontSize={props.size}
         style={{ fontFamily: 'open-sans' }}
+        tintColor={props.color}
     />
 }
 

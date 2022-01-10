@@ -35,7 +35,7 @@ const Map = props => {
             displayedData.map(data => {
                 const { id, price } = data.bicycle;
                 const latitude = parseFloat(data.coords.lat);
-                const longitude = parseFloat(data.coords.lng)
+                const longitude = parseFloat(data.coords.lng);
                 return <View key={id}>
                     <BiscycleMarker
                         coordinate={{

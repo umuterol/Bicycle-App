@@ -1,4 +1,5 @@
 import React from "react";
+import Colors from './constants/color'
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
@@ -12,7 +13,7 @@ import MenuHomeScreen from './screens/menu/MenuHome';
 import WalletTransactionsScreen from "./screens/menu/WalletTransactionsScreen";
 import DriveHistoryScreen from './screens/menu/DriveHistoryScreen';
 import BicyclesTransactionsScreen from "./screens/menu/BicyclesTransactionsScreen";
-
+import ActiveDriveScreen from './screens/ActiveDriveScreen'
 
 export default Navigasyon = props => {
     return <NavigationContainer>
@@ -20,16 +21,25 @@ export default Navigasyon = props => {
             {
                 headerShown: false,
                 contentStyle: { backgroundColor: 'white' },
+                headerTitleStyle: {
+                    color: Colors.accentColor,
+                    fontFamily: 'open-sans-bold',
+                    fontSize: 25,
+                },
             }
         }
         >
-            <Stack.Screen component={Login} name="Login" />
+            {/* <Stack.Screen component={Login} name="Login" />
             <Stack.Screen
                 component={IdentityConfirmationScreen}
-                name="IdentityConfirmationScreen" />
+                name="IdentityConfirmationScreen" /> */}
             <Stack.Screen
                 component={MapScreen}
                 name="MapScreen"
+            />
+            <Stack.Screen
+                component={ActiveDriveScreen}
+                name="ActiveDriveScreen"
             />
             <Stack.Screen
                 component={MenuHomeScreen}
@@ -44,12 +54,12 @@ export default Navigasyon = props => {
             <Stack.Screen
                 component={DriveHistoryScreen}
                 name="DriveHistoryScreen"
-                options={{ headerShown: true, headerTitle: "" }}
+                options={{ headerShown: true, headerTitle: "Sürüşlerim" }}
             />
             <Stack.Screen
                 component={BicyclesTransactionsScreen}
                 name="BicyclesTransactionsScreen"
-                options={{ headerShown: true, headerTitle: "" }}
+                options={{ headerShown: true, headerTitle: "Bisikletlerim" }}
             />
         </Stack.Navigator>
     </NavigationContainer >

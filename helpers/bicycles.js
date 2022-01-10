@@ -8,5 +8,18 @@ export const getAllParkedBicyclesWithCoords = async () => {
     if (success)
         return response.data;
 
+    return [];
+}
+
+
+export const getAllMyBicycles = async (tc) => {
+    const url = `https://www.bisikletimolsun.xyz/api/bicycle/query?owner=${tc}`;
+    const response = await GET(url);
+    const { success } = response;
+
+
+    if (success)
+        return response.data;
+
     return false;
 }

@@ -35,7 +35,7 @@ export const Example = (props) => {
             //session
             const { tc } = response.data;
             dispatch(loginAction(tc));
-            // props.navigation.navigate('MapsScreen')
+            props.navigation.navigate('MapScreen')
         }
     }
     return (

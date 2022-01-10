@@ -19,7 +19,6 @@ const VerifyCodeScreen = props => {
         setValue(text);
         if (text === verifyCode) {
             const tc = await isExistUser(phoneNumber);
-            console.log(tc)
             if (!tc) {
                 return props.navigation.replace('IdentityConfirmationScreen', { phone: phoneNumber })
             }

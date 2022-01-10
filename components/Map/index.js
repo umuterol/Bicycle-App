@@ -8,7 +8,7 @@ import Colors from '../../constants/color';
 import MenuButton from '../MenuButton'
 
 const index = (props) => {
-    const [selectedBicycle, setSelectedBicycle] = useState("#fff");
+    const [selectedBicycle, setSelectedBicycle] = useState({});
     const { isOpen, onOpen, onClose } = useDisclose()
     const [location, setLocation] = useState(false);
 
@@ -39,7 +39,7 @@ const index = (props) => {
                 isOpen={isOpen}
                 onClose={onClose}
                 selectedBicycle={selectedBicycle}
-                startButton={() => { console.log("test start button") }}
+                startButton={() => props.startDrive(selectedBicycle.id)}
             />
         </View>
     )

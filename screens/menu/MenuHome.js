@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import WalletCard from '../../components/WalletCard'
 import { useSelector } from 'react-redux'
 import MenuList from '../../components/MenuList'
+import Loading from '../../components/Loading'
 //helpers
 import { getWallet } from '../../helpers/wallets'
 
@@ -15,7 +16,7 @@ const MenuHome = (props) => {
     }, [])
 
     if (!wallet) {
-        return null;
+        return <Loading />;
     }
 
     return (
