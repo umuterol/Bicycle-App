@@ -5,8 +5,9 @@ import { useDisclose } from 'native-base'
 import locationPermission from '../../permissions/locationPermission'
 import Map from './Map'
 import Colors from '../../constants/color';
+import MenuButton from '../MenuButton'
 
-const index = () => {
+const index = (props) => {
     const [selectedBicycle, setSelectedBicycle] = useState("#fff");
     const { isOpen, onOpen, onClose } = useDisclose()
     const [location, setLocation] = useState(false);
@@ -14,7 +15,7 @@ const index = () => {
     useEffect(async () => {
         const userLocation = await locationPermission();
         setLocation(userLocation.coords);
-    },[])
+    }, [])
 
     if (!location)
         return <View style={styles.screen}>
@@ -31,7 +32,9 @@ const index = () => {
             <Map
                 userLocation={location}
                 onSelectBicycle={mapSelectBicycleHandler}
+                data={props.parkedBicycles}
             />
+            <MenuButton onSelect={() => props.navigation.navigate('MenuHomeScreen')} />
             <ActionBicycle
                 isOpen={isOpen}
                 onClose={onClose}

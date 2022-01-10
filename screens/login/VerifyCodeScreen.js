@@ -2,21 +2,37 @@ import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import NumberTextInput from '../../components/NumberTextInput'
 import Button from '../../components/Button'
-import { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message"
+import { useDispatch } from "react-redux"
+import { loginAction } from '../../store/action/user'
+
+//helpers
+import { isExistUser } from '../../helpers/identity'
 
 const VerifyCodeScreen = props => {
     const [value, setValue] = useState();
     const { verifyCode } = props.route.params;
-    const changeText = (text) => {
-        setValue(value);
+    const { phoneNumber } = props.route.params;
+    const dispatch = useDispatch();
+
+    const changeText = async (text) => {
+        setValue(text);
         if (text === verifyCode) {
-            props.navigation.replace('MapScreen')
+            const tc = await isExistUser(phoneNumber);
+            console.log(tc)
+            if (!tc) {
+                return props.navigation.replace('IdentityConfirmationScreen', { phone: phoneNumber })
+            }
+            else {
+                dispatch(loginAction(tc));
+                return props.navigation.replace('MapScreen')
+            }
         }
     }
 
     const approvalCode = () => {
         if (value === verifyCode) {
-            return props.navigation.navigate('SuccessScreen')
+            return props.navigation.replace('IdentityConfirmationScreen', { phone: phoneNumber })
         }
         showMessage({
             message: 'Doğrulama kodunuz hatalı !',
@@ -30,7 +46,6 @@ const VerifyCodeScreen = props => {
                 <View style={styles.input}>
                     <NumberTextInput
                         label="DOGRULAMA KODU"
-                        // size={20}
                         value={value}
                         onChangeText={changeText}
                     />

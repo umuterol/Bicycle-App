@@ -5,6 +5,14 @@ import { OpenSans_400Regular, OpenSans_600SemiBold } from '@expo-google-fonts/op
 import Navigasyon from './Navigasyon';
 import Color from './constants/color';
 import FlashMessage from "react-native-flash-message";
+//redux
+import { combineReducers, createStore } from 'redux'
+import { Provider } from 'react-redux'
+import userReducer from './store/reducer/userReducer'
+const combineStore = combineReducers({
+  user: userReducer,
+})
+const store = createStore(combineStore);
 
 export default function App() {
   const [dataLoaded] = useFonts({
@@ -17,19 +25,10 @@ export default function App() {
   }
 
   return (
-    <>
+    <Provider store={store}>
       <Navigasyon />
       <StatusBar style="auto" />
       <FlashMessage position="bottom" />
-    </>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

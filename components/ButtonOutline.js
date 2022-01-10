@@ -6,7 +6,6 @@ const ButtonOutline = props => {
     const color = props.color || Color.accentColor;
     const defaultButtonStyle = {
         ...styles.button,
-        //  borderColor: color,
     };
     const defaultTextStyle = { ...styles.text, color: color, };
     const [buttonStyle, setButtonStyle] = useState(defaultButtonStyle)
@@ -43,13 +42,7 @@ export default ButtonOutline
 
 const styles = StyleSheet.create({
     button: {
-        // borderWidth: 2,
         borderRadius: 7,
-        // shadowColor: 'black',
-        // shadowOffset: { width: 5, height: 5 },
-        // shadowOpacity: 0.7,
-        // shadowRadius: 7,
-        // elevation: 5,
         padding: 10,
         backgroundColor: '#fff',
     },

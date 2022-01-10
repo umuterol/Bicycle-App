@@ -21,9 +21,9 @@ const AccessScreen = props => {
             })
             return false;
         }
-        const verifyCode = await login(value);
+        const verifyCode = '222'//await login(value);
         if (verifyCode) {
-            return props.navigation.navigate('VerifyScreen', { verifyCode })
+            return props.navigation.navigate('VerifyScreen', { verifyCode, phoneNumber: value })
         }
         showMessage({
             message: 'Mesaj gönderilemedi! tekrar deneyin.',
@@ -34,7 +34,7 @@ const AccessScreen = props => {
 
 
     return <View style={styles.screen}>
-        <Image source={require('../../assets/images/mockup.png')} style={styles.image} />
+        <Image source={require('../../assets/images/mockup.jpg')} style={styles.image} />
         <View style={styles.inputContainer}>
             <PhoneInput
                 defaultCode='TR'

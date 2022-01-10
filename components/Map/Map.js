@@ -13,6 +13,7 @@ const Map = props => {
         latitudeDelta,
         longitudeDelta,
     }
+    const displayedData = props.data;
 
     return <MapView
         style={styles.map}
@@ -29,23 +30,24 @@ const Map = props => {
             left: 10,
         }}
     >
-        <BiscycleMarker
-            coordinate={{
-                latitude: 36.5775991 + 0.0004,
-                longitude: 36.1601671,
-            }}
-            onSelectBicycle={props.onSelectBicycle}
-            bicycle={{ id: '#1F2C', price: '0,55' }}
-        />
 
-        <BiscycleMarker
-            coordinate={{
-                latitude: 36.5775991 + 0.0014,
-                longitude: 36.1609671,
-            }}
-            onSelectBicycle={props.onSelectBicycle}
-            bicycle={{ id: '#777C', price: '0,55' }}
-        />
+        {
+            displayedData.map(data => {
+                const { id, price } = data.bicycle;
+                const latitude = parseFloat(data.coords.lat);
+                const longitude = parseFloat(data.coords.lng)
+                return <View key={id}>
+                    <BiscycleMarker
+                        coordinate={{
+                            latitude,
+                            longitude,
+                        }}
+                        onSelectBicycle={props.onSelectBicycle}
+                        bicycle={{ id, price }}
+                    />
+                </View>
+            })
+        }
 
     </MapView>
 
